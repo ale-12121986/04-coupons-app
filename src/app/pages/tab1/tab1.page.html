@@ -35,9 +35,9 @@
 <ng-template #couponTemplate let-category ="category">
   <ion-grid>
     <ion-row>
-      @for(coupon of coupons | filterCouponCategory: category ; track coupon.IdProduct){
+      @for(coupon of coupons | filterCouponCategory: category ; track $index){
         <ion-col size="6">
-          <ion-card class="rounded">
+          <ion-card class="rounded" [color]="coupon.active ? 'secondary' :'light'" (click)="changeActive(coupon)">
             <img [src]="coupon.img"/>
             <ion-card-header>
               <ion-card-subtitle class="ion-text-center">{{coupon.name}} </ion-card-subtitle>

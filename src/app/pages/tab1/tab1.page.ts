@@ -27,4 +27,8 @@ export class Tab1Page {
     this.coupons =await this.couponService.getCoupons();
     console.log(this.coupons);
   }
+
+  changeActive(coupon: Coupon){
+    coupon.active = !coupon.active; 
+  }
 }
