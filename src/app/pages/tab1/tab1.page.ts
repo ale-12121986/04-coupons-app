@@ -30,5 +30,6 @@ export class Tab1Page {
 
   changeActive(coupon: Coupon){
     coupon.active = !coupon.active; 
+    this.couponService.saveCoupon(this.coupons);
   }
 }
