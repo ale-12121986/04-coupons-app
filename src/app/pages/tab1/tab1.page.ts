@@ -9,7 +9,9 @@ import { FilterCouponCategoryPipe } from '../../pipes/filter-coupon-category-pip
 import { NgTemplateOutlet } from '@angular/common';
 import { addIcons } from 'ionicons';
 import { cameraOutline } from 'ionicons/icons';
-import{ CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint, CapacitorBarcodeScannerScanResult } from '@capacitor/barcode-scanner';
+import{ CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint, 
+  CapacitorBarcodeScannerScanResult } from '@capacitor/barcode-scanner';
+import { ToastService } from '../../services/toast';
 
 
 @Component({
@@ -28,6 +30,7 @@ export class Tab1Page {
     });
   }
 
+  private toastService: ToastService = inject(ToastService);
   private couponService: CouponService = inject(CouponService);
   public coupons: Coupon[] = [];
 
@@ -62,17 +65,17 @@ export class Tab1Page {
                 coupon
               ]; 
               
-              console.log("Cupón anadido:");
+              this.toastService.showToast("Cupón añadido correctamente");
             }else{
-              console.error("El cupón ya existe");
+              this.toastService.showToast("El cupón ya existe");
             }
 
           }else{
-               console.error("El QR es invalido");
+               this.toastService.showToast("El QR es invalido");
           }
 
         }catch(error){
-          console.error("Error parsing coupon data from QR code:", error);
+          this.toastService.showToast("Error parsing coupon data from QR code:");
         }
 
       }
